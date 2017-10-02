@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   //grab initial data;
   fetchData();
-  var fetchIntervalId = setInterval(fetchData, 60000);
+  var fetchIntervalId = setInterval(fetchData, 5000);
 
   function initTicker(){
     $webTicker.webTicker({
@@ -37,6 +37,19 @@ $(document).ready(function() {
      });
    }
 
+   function compareLists(oldList, newList){
+     var same = true;
+
+     for (var i = 0; i < newList.length; i++){
+       if (!newList[i] || !oldList[i]) return false;
+
+       if (newList[i].id_str !== oldList[i].id_str) {
+         return false;
+       }
+     }
+     return same;
+   }
+
    function updateFavorites(favorites){
      var favoritesHtml = '';
 
@@ -49,11 +62,7 @@ $(document).ready(function() {
        initTicker();
      }
 
-     if (favorites === currentList) {
-       console.log('no updates!');
-     }
-
-     if (favorites !== currentList) {
+     if (!compareLists(currentList, favorites)) {
        $webTicker.webTicker('update',
          favoritesHtml,
          'swap',
