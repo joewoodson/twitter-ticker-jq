@@ -74,7 +74,7 @@ $(document).ready(function() {
      var mediaUrl = favorite.entities.media ? favorite.entities.media[0].media_url_https : null;
      var attachedImg = mediaUrl ? '<img class="image-attached" src="' + mediaUrl + '" />' : '';
 
-     return '<li data-update="item' + favorite.id_str + '" class="tweet"><img src="' + favorite.user.profile_image_url + '" /> <span className="author">@' + favorite.user.screen_name + ':</span> <span className="text">' + text + '</span>' + attachedImg + '</li>'
+     return '<li data-update="item' + favorite.id_str + '" class="tweet"><img src="' + favorite.user.profile_image_url + '" /> <span class="author">@' + favorite.user.screen_name + ':</span> <span className="text">' + text + '</span>' + attachedImg + '</li>'
    }
 
    function updateFavorites(favorites){
