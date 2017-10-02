@@ -10,10 +10,21 @@ $(document).ready(function() {
   //grab initial data;
   fetchData();
   var fetchIntervalId = setInterval(fetchData, 5000);
+  var speed = (getParameterByName('speed') && !isNaN(getParameterByName('speed'))) ? getParameterByName('speed') : 90;
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 
   function initTicker(){
     $webTicker.webTicker({
-      speed: 410,
+      speed: speed,
       height: '64px',
       hoverpause: false,
       duplicate: true,
