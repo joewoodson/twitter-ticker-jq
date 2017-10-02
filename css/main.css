@@ -74,6 +74,28 @@ body {
   background: #000;
 }
 
+/* ==========================================================================
+   Ticker Title
+   ========================================================================== */
+
+.ticker-title {
+  position: fixed;
+  padding: 0 15px;
+  background: #e30613;
+  height: 64px;
+  line-height: 73px;
+  z-index: 10;
+  border-left: 13px solid #A51008;
+}
+
+.ticker-title h1 {
+  font-family: 'Garage Gothic FB Bold', 'Asap Condensed';
+  margin: 0;
+  font-size: 45px;
+  color: #fff;
+}
+
+
 #webTicker {
   margin: 0 auto;
   white-space: nowrap;
@@ -135,7 +157,6 @@ body {
      padding-right: 12px;
      font-family: 'Garage Gothic FB Bold', 'Asap Condensed';
    }
-
 
 
 /* ==========================================================================
