@@ -51,10 +51,90 @@ textarea {
     padding: 0.2em 0;
 }
 
+/* ==========================================================================
+   General
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Garage Gothic FB Black';
+    src: url('../assets/Garage-Gothic-FB-Black.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Garage Gothic FB Bold';
+    src: url('../assets/Garage-Gothic-FB-Bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Garage Gothic FB Regular';
+    src: url('../assets/Garage-Gothic-FB-Regular.otf') format('opentype');
+}
+
+body {
+  background: #000;
+}
+
+#webTicker {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 64px;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.tweets {
+  display: inline-block;
+  /*padding-left: 100%;*/
+  /*animation: marquee 10s linear infinite;*/
+}
+
+.tweet {
+  display: inline-block;
+}
+
 
 /* ==========================================================================
-   Author's custom styles
+   Tweets
    ========================================================================== */
+
+   .tweet {
+     font-family: 'Garage Gothic FB Regular', 'Asap Condensed';
+     font-size: 30px;
+     color: #3c3c3b;
+     padding: 0 !important;
+     display: flex;
+     align-items: center;
+   }
+
+   .tweet::after {
+     content: "";
+     display: inline-block;
+     margin: 0 32px !important;
+     width: 2px;
+     height: 45px;
+     background: lightgrey;
+     vertical-align: middle;
+   }
+
+   .tweet img {
+     vertical-align: middle;
+     margin: 0 12px 0 8px;
+   }
+
+   .tweet .image-attached {
+     max-height: 64px;
+     margin: 0;
+     margin-left: 12px;
+   }
+
+   .author {
+     padding-right: 12px;
+     font-family: 'Garage Gothic FB Bold', 'Asap Condensed';
+   }
 
 
 
