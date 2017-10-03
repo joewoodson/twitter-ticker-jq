@@ -22,6 +22,14 @@ $(document).ready(function() {
     fetchData();
   }
 
+  $('#stop-ticker').click(function() {
+    if ($webTicker) $webTicker.webTicker('stop');
+  });
+
+  $('#start-ticker').click(function() {
+    if ($webTicker) $webTicker.webTicker('cont');
+  });
+
   // check if last element is at right edge of screen, which means list can be updated
   setInterval(function() {
 
@@ -61,13 +69,14 @@ $(document).ready(function() {
             console.log('curr: ' + currentLeft);
             console.log('new: ' + newLeft);
 
-           $webTicker.css({ left: newLeft });
+          //  $webTicker.css({ left: newLeft });
            $webTicker.webTicker('update',
              updatedHtml,
              'swap',
              true,
              true
            );
+           $webTicker.webTicker('stop');
            console.log('updated');
            updatedHtml = '';
           } else {
