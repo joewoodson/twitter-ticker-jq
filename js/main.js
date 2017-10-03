@@ -7,8 +7,15 @@ $(document).ready(function() {
 
   var $webTicker = $('#webTicker');
 
-  //grab initial data and set config vars
-  fetchData();
+  //grab initial data, either from local storage or api, and set config vars
+  var favorites = localStorage.getItem('tweets');
+  if (favorites) {
+    updateFavorites(JSON.parse(favorites));
+    currentList = JSON.parse(favorites);
+  } else {
+    fetchData();
+  }
+
   var fetchIntervalId = setInterval(fetchData, 60000);
   var speed = (getParameterByName('speed') && !isNaN(getParameterByName('speed'))) ? getParameterByName('speed') : 90;
 
@@ -32,7 +39,7 @@ $(document).ready(function() {
   }
 
     function fetchData(){
-    $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=igbce&count=10', {
+    $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=joewdsn&count=10', {
         headers: {
           Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAC7k2QAAAAAAUGifZBfJhkrz2xTH6o4f0F0KQcA%3DIqMxALOukBJv8V77TeGVsuGxwxlTKu3B1S8KUW3628TN3RrNSt'
         },
@@ -41,9 +48,11 @@ $(document).ready(function() {
           console.log('favorites fetched...');
           updateFavorites(favorites);
           currentList = favorites;
+          localStorage.setItem('tweets', JSON.stringify(favorites));
         },
         error: function(req, status, err) {
           console.log('Error: ' + err);
+          console.log('currently running in offline mode...');
         }
      });
    }
