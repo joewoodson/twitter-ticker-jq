@@ -75,7 +75,7 @@ $(document).ready(function() {
      return same;
    }
 
-   function createTweet(favorite){
+   function createTweet(favorite, isLast){
      var text = favorite.full_text;
      if (favorite.entities.urls[0]) {
        text = text.replace(favorite.entities.urls[0].url, '');
@@ -87,16 +87,18 @@ $(document).ready(function() {
 
      var mediaUrl = favorite.entities.media ? favorite.entities.media[0].media_url_https : null;
      var attachedImg = mediaUrl ? '<img class="image-attached" src="' + mediaUrl + '" />' : '';
+     var liClass = isLast ? 'last tweet' : 'tweet';
 
-     return '<li data-update="item' + favorite.id_str + '" class="tweet"><img src="' + favorite.user.profile_image_url + '" /> <span class="author">@' + favorite.user.screen_name + ':</span> <span class="text">' + text + '</span>' + attachedImg + '</li>'
+     return '<li data-update="item' + favorite.id_str + '" class="' + liClass + '"><img src="' + favorite.user.profile_image_url + '" /> <span class="author">@' + favorite.user.screen_name + ':</span> <span class="text">' + text + '</span>' + attachedImg + '</li>'
    }
 
    function updateFavorites(favorites){
      var favoritesHtml = '';
 
      for (var i = 0; i < favorites.length; i++) {
-      //  favoritesHtml += '<li data-update=item' + favorites[i].id_str + ' class="tweet">' + favorites[i].full_text + '</li>';
-       favoritesHtml += createTweet(favorites[i]);
+       var isLast = i === favorites.length - 1;
+
+       favoritesHtml += createTweet(favorites[i], isLast);
      }
 
      if (!running) {
