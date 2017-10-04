@@ -8,7 +8,9 @@ $(document).ready(function() {
 
   var $webTicker = $('#webTicker');
 
-  var fetchIntervalId = setInterval(fetchData, 10000);
+  // $webTicker.css({ background: 'orange', position: 'absolute', paddingLeft: 50000 })
+
+  var fetchIntervalId = setInterval(fetchData, 60000);
   var speed = (getParameterByName('speed') && !isNaN(getParameterByName('speed'))) ? getParameterByName('speed') : 90;
   var mode = getParameterByName('mode');
 
@@ -16,7 +18,7 @@ $(document).ready(function() {
   var favorites = localStorage.getItem('tweets');
   if (favorites) {
     var savedFavorites = JSON.parse(favorites);
-    createFavoritesList(savedFavorites);
+    createFavoritesList(savedFavorites, false);
     currentList = savedFavorites;
   } else {
     fetchData();
@@ -28,6 +30,180 @@ $(document).ready(function() {
 
   $('#start-ticker').click(function() {
     if ($webTicker) $webTicker.webTicker('cont');
+  });
+
+  $('#update-ticker').click(function() {
+    var testFavorites = [
+      // {
+      //   id_str: '"914990934357680128"',
+      //   entities: {
+      //     urls: ''
+      //   },
+      //   user: {
+      //     screen_name: 'NatGeo',
+      //     profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+      //   },
+      //   full_text: "Photo of the Day: Through the Mist #photography #pod",
+      // },
+      // {
+      //   id_str: "915022603320020994",
+      //   entities: {
+      //     urls: ''
+      //   },
+      //   user: {
+      //     screen_name: 'NatGeo',
+      //     profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+      //   },
+      //   full_text: "The warship Mars sank in a 1654 naval battle—and now you can explore it in 3D",
+      // },
+      // {
+      //   id_str: "915067904898617344",
+      //   entities: {
+      //     urls: ''
+      //   },
+      //   user: {
+      //     screen_name: 'NatGeo',
+      //     profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+      //   },
+      //   full_text: 'Scientists have identified 730 sites where human activity caused earthquakes over the past 150 years',
+      // },
+      // {
+      //   id_str: "915098350990577664",
+      //   entities: {
+      //     urls: ''
+      //   },
+      //   user: {
+      //     screen_name: 'NatGeo',
+      //     profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+      //   },
+      //   full_text: "Cupping has been practiced for over 3,000 years, though traditionally it's with glass cups",
+      // },
+      {
+        id_str: '915124290546225152',
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "Photo of the Day: Love and Safety #photography #pod",
+      },
+      {
+        id_str: "915158751254138881",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "Impalas can usually outrun their predators—so leopards favor ambushing.",
+      },
+      {
+        id_str: "915189203700523013",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "A rich tangle of lore has grown around the Nobel Prizes",
+      },
+      {
+        id_str: "915212846887325696",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "Three physicists have been honored for finding gravitational waves—here's why it's such a big deal",
+      },
+      {
+        id_str: "915218821992067074",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "Apologies, here is the correct link: #photography #pod",
+      },
+      {
+        id_str: "915232155835432963",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "The Nenets have always lived close to the edge, but these days, some of them seem precariously close to falling off",
+      },
+      {
+        id_str: "1",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "This is test tweet 1!",
+      },
+      {
+        id_str: "2",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "This is test tweet 2!",
+      },
+      {
+        id_str: "3",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "This is test tweet 3!",
+      },
+      {
+        id_str: "4",
+        entities: {
+          urls: ''
+        },
+        user: {
+          screen_name: 'NatGeo',
+          profile_image_url: 'http://pbs.twimg.com/profile_images/798181194202566656/U8QbCBdH_normal.jpg'
+        },
+        full_text: "This is test tweet 4!",
+      },
+    ]
+
+    if ($webTicker) {
+
+      $webTicker.children('li').fadeOut(700);
+      setTimeout(function() {
+        console.log('clicked');
+        $webTicker.webTicker('update',
+          createFavoritesList(testFavorites, true),
+          'swap',
+          true,
+          true
+        );
+      }, 700);
+      console.log('updated');
+    }
   });
 
   // check if last element is at right edge of screen, which means list can be updated
@@ -76,7 +252,6 @@ $(document).ready(function() {
              true,
              true
            );
-           $webTicker.webTicker('stop');
            console.log('updated');
            updatedHtml = '';
           } else {
@@ -108,14 +283,15 @@ $(document).ready(function() {
 
     function fetchData(){
     if (mode !== 'offline') {
-      $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=joewdsn&count=3', {
+      $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=joewdsn&count=10', {
           headers: {
             Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAC7k2QAAAAAAUGifZBfJhkrz2xTH6o4f0F0KQcA%3DIqMxALOukBJv8V77TeGVsuGxwxlTKu3B1S8KUW3628TN3RrNSt'
           },
           success: function(data) {
             var favorites = data.reverse();
             console.log('favorites fetched...');
-            createFavoritesList(favorites);
+            console.log(favorites);
+            createFavoritesList(favorites, false);
             currentList = favorites;
             localStorage.setItem('tweets', JSON.stringify(favorites));
           },
@@ -159,7 +335,7 @@ $(document).ready(function() {
      return '<li data-update="item' + favorite.id_str + '" class="' + liClass + '"><img src="' + favorite.user.profile_image_url + '" /> <span class="author">@' + favorite.user.screen_name + ':</span> <span class="text">' + text + '</span>' + attachedImg + '</li>'
    }
 
-   function createFavoritesList(favorites){
+   function createFavoritesList(favorites, test){
      var favoritesHtml = '';
 
      for (var i = 0; i < favorites.length; i++) {
@@ -168,11 +344,13 @@ $(document).ready(function() {
        favoritesHtml += createTweet(favorites[i], isLast);
      }
 
-     if (!compareLists(currentList, favorites)) {
-       updatedHtml = favoritesHtml;
-       // need to get only the new ones instead
-       getUpdatedWidth(favoritesHtml);
-     }
+       if (!compareLists(currentList, favorites)) {
+         if (test) return favoritesHtml;
+         updatedHtml = favoritesHtml;
+         // need to get only the new ones instead
+         getUpdatedWidth(favoritesHtml);
+       }
+
    }
 
    function getUpdatedWidth(html){
