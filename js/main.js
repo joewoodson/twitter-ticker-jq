@@ -41,7 +41,7 @@ $(document).ready(function() {
 
     function fetchData(){
     if (mode !== 'offline') {
-      $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=joewdsn&count=10', {
+      $.ajax(proxyUrl + rootUrl +'favorites/list.json?&tweet_mode=extended&screen_name=igbce&count=10', {
           headers: {
             Authorization: 'Bearer AAAAAAAAAAAAAAAAAAAAAC7k2QAAAAAAUGifZBfJhkrz2xTH6o4f0F0KQcA%3DIqMxALOukBJv8V77TeGVsuGxwxlTKu3B1S8KUW3628TN3RrNSt'
           },
@@ -110,7 +110,6 @@ $(document).ready(function() {
        console.log('updated');
        $webTicker.children('li').fadeOut(700);
        setTimeout(function() {
-         console.log('clicked');
          $webTicker.webTicker('update',
            favoritesHtml,
            'swap',
