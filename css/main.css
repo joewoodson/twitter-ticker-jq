@@ -71,7 +71,7 @@ textarea {
 }
 
 body {
-  background: #000;
+  background: #fff;
 }
 
 /* ==========================================================================
@@ -125,7 +125,7 @@ body {
 
    .tweet {
      font-family: 'Garage Gothic FB Regular', 'Asap Condensed';
-     font-size: 30px;
+     font-size: 40px;
      color: #3c3c3b;
      padding: 0 !important;
      display: flex;
