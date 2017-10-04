@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   var $webTicker = $('#webTicker');
 
-  var fetchIntervalId = setInterval(fetchData, 10000);
+  var fetchIntervalId = setInterval(fetchData, 60000);
   var speed = (getParameterByName('speed') && !isNaN(getParameterByName('speed'))) ? getParameterByName('speed') : 90;
   var mode = getParameterByName('mode');
 

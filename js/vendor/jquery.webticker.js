@@ -430,21 +430,11 @@
 
 				//resetting $strip so that duplication works according to new width
 
-				// HERE!!!
 				if ($strip.find('li.webticker-init').length < 1){ // checks if the strip's width is populated and handles the update accordingly
 					settings.startEmpty=false;
-					// console.log('yup!');
-					// $strip.css( "left", "-=2000" );
-					// $strip.children('li').addClass('flash');
-					// setTimeout( function(){
-          //   $strip.children('li').removeClass("flash"), 1000;
-        	// }, 1000);
-					// $strip.children('li').fadeOut();
-					// var fade = setTimeout(function() {
-					// 	$strip.children('li').fadeIn();
-					// }, 100);
 				}
 				$strip.html(list);
+				// hide all new items until they can be faded in
 				$strip.children('li').css('display', 'none');
 				//setting the css rules
 				$strip.children('li').css('white-space','nowrap');
@@ -452,11 +442,9 @@
 				$strip.children('li').css('padding','0 7px');
 				$strip.children('li').css('line-height',settings.height);
 
-				// $strip.children('li').fadeOut(950);
 				initialize($strip,true);
-				// setTimeout(function() {
-					$strip.children('li').fadeIn(200);
-				// }, 50);
+				// show items again once strip is reinitialized
+				$strip.children('li').fadeIn(200);
 			}
 			else
 			{
